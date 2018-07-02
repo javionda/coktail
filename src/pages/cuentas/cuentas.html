@@ -1,0 +1,34 @@
+<ion-header>
+<ion-navbar>
+  <button ion-button menuToggle>
+    <ion-icon name="menu"></ion-icon>
+  </button>
+  <ion-title>Cuentas</ion-title>
+  <ion-buttons start>
+      
+      <button ion-button (click)="createCuenta()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
+</ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-content>
+      <ion-list>
+        <ion-item-sliding *ngFor='let cuenta of cuentas'>
+          <ion-item>
+            <ion-label>{{ cuenta.nombre }}</ion-label>
+            
+           
+          </ion-item>
+           <ion-item-options>
+            <button ion-button danger (click)="removeCuenta( cuenta )">
+              Borrar
+            </button>
+           </ion-item-options>
+        </ion-item-sliding>
+      </ion-list>
+    </ion-content>
+</ion-content>
+

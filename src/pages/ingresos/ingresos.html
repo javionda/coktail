@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Ingresos</ion-title>
+    <ion-buttons start>
+
+      <button ion-button (click)="createIngreso()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-content>
+      <form (ngSubmit)="createIngreso()">
+      <ion-list>
+        <ion-item>
+          <ion-label>Cuenta</ion-label>
+          <ion-select [(ngModel)]="ingreso.cuenta" name="cuenta_sel" (ionChange)="selCuenta()">
+            <ion-option *ngFor="let cuenta of cuentas" [value]="cuenta.key">{{cuenta.nombre}}</ion-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>Descripción</ion-label>
+          <ion-input type="text" [(ngModel)]="ingreso.descripcion" name="descripcion"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>Importe</ion-label>
+          <ion-input type="number" [(ngModel)]="ingreso.importe" name="importe"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <button ion-button full round>GUARDAR</button>
+        </ion-item>
+      </ion-list>
+    </form>
+
+    <ion-list>
+      <ion-item-sliding *ngFor='let ingreso of ingresos'>
+        <ion-item>
+          <ion-label>{{ ingreso.descripcion }}</ion-label>
+          <ion-label>{{ ingreso.importe }}</ion-label>
+
+        </ion-item>
+        <ion-item-options>
+          <button ion-button danger (click)="removeIngreso( ingreso )">
+            Borrar
+          </button>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
+  </ion-content>
+</ion-content>
